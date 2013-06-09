@@ -1,0 +1,387 @@
+\documentclass[a4paper, 12pt, titlepage]{article}
+
+\usepackage[T2A,T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[russian,english]{babel}
+\usepackage{graphicx}
+\usepackage{fullpage}
+\usepackage{enumitem}
+\usepackage[hidelinks]{hyperref}
+
+\begin{document}
+
+\begin{otherlanguage}{russian}
+
+\begin{titlepage}
+\begin{center}
+  \includegraphics[scale=0.5]{label.jpg}\\
+  \vspace{20pt}
+  МИНОБРНАУКИ РОССИИ\\
+      Федеральное государственное бюджетное образовательное учреждение\\
+      высшего профессионального образования\\
+    <<Московский государственный технический университет радиотехники,\\
+    электроники и автоматики>>\\ 
+    (МГТУ МИРЭА)\\
+    \line(2,0){500}\\
+    \vspace{10pt}
+    {\large Факультет\\
+      \vspace{10pt}
+      <<Информационных технологий (ИТ)>>}
+\end{center}
+
+\vspace{60pt}
+\begin{center}
+  {\large Отчет}\\
+  \vspace{10pt}
+  О выполнении лабораторной работы №2\\
+  по дисциплине <<Реляционные базы данных>>\\
+\end{center}
+\vspace{\fill}
+Руководитель: Скворцова Л.А.\\
+Исполнитель: Кулёв П.С.\\
+Группа: ИТО-1-10
+\begin{center}
+\vspace{\fill}
+Москва\\2013
+\end{center}
+\end{titlepage}
+
+\newpage
+
+\tableofcontents
+\newpage
+
+\section{Введение}
+\vspace{15mm}
+\par Бурное развитие информационных технологий обусловило необходимость выработки новых подходов к решению проблем автоматизации деятельности различных организаций, служб, предприятий. Работа таких организаций связана с накоплением большого количества информации.\\
+
+\par В недавнем прошлом, информацию такого рода хранили в картотеках, используя <<бумажные>> технологии. И, разумеется, они занимали довольно большие объёмы. Вся информация заносилась вручную на бумажные карточки, что создавало большие неудобства, затрачивалось большое количество времени и, естественно, работа такого вида сама по себе была очень кропотливой. При необходимости узнать информацию требовалась затратить большое количество времени. Сама картотека <<изнашивалась>> по ходу работы, то есть через некоторое время бумага могла утратить своё былое качество.
+
+\par Сейчас же, в век компьютерных технологий и большого прогресса в этой сфере, на смену неудобного прошлого пришли очень удобные, надёжные, быстродействующие компьютерные системы, но при этом часто возникают ситуации, когда трудно осуществить быстрый отбор нужной информации. Немаловажен вопрос надежности хранения и конфиденциальности различных сведений. Для решения таких задач используется специальное программное обеспечение, часто объединенное в крупные информационно-справочные системы.\\
+
+\par В рамках курсовой работы ведётся разработка базы данных для учёта изготовленных в студии трехмерных цифровых моделей. Тема разработки – Разработка ПП АИС <<Модель>>.
+
+\newpage
+
+\section{Теоретический раздел}
+\subsection{Основы разработки ПО АИС}
+\vspace{15mm}
+
+\par Автоматизированная информационная система (АИС) – это совокупность различных программно-аппаратных средств, которые предназначены для автоматизации какой-либо деятельности, связанной с передачей, хранением и обработкой различной информации.\\
+
+\par В АИС за хранение любой информации отвечают:
+
+\begin{center}
+  \begin{enumerate}
+  \item На физическом уровне:
+    \begin{enumerate}[label*=\arabic*.]
+    \item внешние накопители
+    \item встроенные устройства памяти;
+    \item дисковые массивы;
+    \end{enumerate}
+  \item На программном уровне:
+    \begin{enumerate}[label*=\arabic*.]
+    \item СУБД;
+    \item Файловая система ОС;
+    \item Система хранения мультимедиа;
+    \end{enumerate}
+  \end{enumerate}
+\end{center}
+
+\par В современной вычислительной технике ИС представляет собой целый программный комплекс, который дает возможность надежно хранить данные в памяти, выполнять преобразования информации и производить вычисления с помощью удобного и легкого интерфейса, так же называемого программным обеспечением (ПО).\\
+
+\par Технологический процесс проектирования ПО состоит из следующих этапов:\\
+\begin{enumerate}
+\item Исследование и обоснование необходимости создания программного обеспечения.
+\item Техническое задание, которое включает в себя назначение проекта, цель, практическое использование, требования к входным и выходным данным.
+\item Эскизный проект. Он содержит глобальное проектное решение, дающее представление об устройстве и принципах работы проектируемого изделия. Этот этап иногда называется технико-экономическое обоснование.
+\item Технический проект. На этом этапе определяются конфигурация технических средств, наличие устройств ввода вывода. Использование сети.
+\item Рабочий проект. Включает в себя разработанное программное обеспечение и документацию по сопровождению.
+\item Ввод в действие. Опытная эксплуатация, доработка, внедрение, эксплуатация.
+\end{enumerate}
+
+\newpage
+
+\subsection{Обоснование выбора СУБД}
+\vspace{15mm}
+
+\par Для реализации решаемой задачи в курсовой работе необходимо осуществление следующих операций:\\
+\begin{itemize}
+\item Добавлять и удалять в базу данных записи.
+\item Изменять и обновлять записи.
+\item Быстро осуществлять поиск нужных записей по критериям поиска.
+\item Создавать отчёты баз данных.
+\itemНеобходим контроль за правильностью ввода данных.
+\itemРабота с большим объёмом данных из разных таблиц и т.д. 
+\end{itemize}
+
+\par Все эти операции должны осуществляться в удобной для пользователя форме и не вызывать затруднений при работе. \\
+
+\par Я выбрал для решения этой задачи следующие инструменты:
+\begin{itemize}
+\item СУБД \verb PostgreSQL ;
+\item \verb Qt  \verb Designer  для создания интерфейса пользователя;
+\item язык программирования \verb Python  для связи интерфейса пользователя с базой данных.
+
+\par СУБД дают возможность пользователям осуществлять непосредственно управление данными, а программистам средства их обработки.
+\end{itemize}
+
+\par \verb PostgreSQL  это мощная объектно-реляционная система управления базами данных с открытыми исходными текстами, которая разрабатывается на протяжении более 15 лет и улучшает архитектуру, чем завоевала репутацию надежной, ингерированной и масштабируемой СУБД. Она работает на всех основных платформах, включая \verb Linux  , \verb UNIX  и \verb Windows , полностью соответствует \verb ACID , имеет полную поддержку ключей, объединений, представлений, триггеров, и хранимых процедур (на разных языках). Она включает большинство типов данных \verb SQL92  и \verb SQL99. Она также поддерживает хранение больших двоичных объектов (\verb BLOB's ), включая картинки, звук, или видео. Также эта замечательная СУБД имеет \verb API  для \verb C/C++ , \verb Java , \verb Perl , \verb Python , \verb Ruby , \verb Tcl , \verb ODBC , и некоторых других.
+\newpage
+
+\section{Раздел проектирования}
+\subsection{Постановка задачи}
+\vspace{15mm}
+
+\par Существует студия, занимающаяся изготовлением трехмерных цифровых моделей на заказ. Каждый сотрудник работает в определенной программе (\verb 3ds  \verb Max , \verb ZBrush , etc.), один проект выполняется одним сотрудником. При обращении клиента работник определяет, какое ПО является наиболее подходящим для реализации конкретной задачи и трудоемкость проекта в человеко-часах. Результат может быть получен заказчиком в различном виде (финальный рендер, развертка и т.д.).\\
+
+\par Разработка информационной системы <<Модель>> обусловлена необходимостью автоматизации ведения журнала заказов, а также быстрого и эффективного поиска информации по заданным параметрам. Данная система предназначена для внутреннего использования студией.
+
+\begin{center}
+  \textbf{Требования к проекту.}
+\end{center}
+
+\begin{itemize}
+\item Вводимая информация:
+  \begin{itemize}
+  \item Спецификации заказа;
+  \item Реквизиты заказчика;
+  \end{itemize}
+\item Хранимая информация:
+  \begin{itemize}
+  \item Список сотрудников, выполняющих заказы;
+  \item Список заказчиков;
+  \item Спецификации заказа;
+  \end{itemize}
+
+\item Справочники:
+  \begin{itemize}
+  \item Список ПО для создания модели;
+  \item Список ПО для рендеринга модели;
+  \item Список форм представления результата заказчику;
+  \end{itemize}
+  
+\item Создаваемые отчёты:
+  \begin{itemize}
+  \item Отчет о выполненных проектах за определенный срок;
+  \item Отчет о разрабатываемых проектах;
+  \item Отчет о загруженности каждого сотрудника;
+  \item Отчет о заказах определенного клиента;
+  \item Отчет о загруженности сотрудников.
+  \end{itemize}
+  
+\end{itemize}
+
+\newpage
+
+\subsection{Постановка задачи}
+\subsubsection{Описание предметной области}
+\vspace{10mm}
+
+\par Представим, что в некоторой дизайнерской студии ООО <<Pafnuty\'s>> хранятся сведения о программах, в которых создаются и рендерятся проекты, о моделях, заказанных клиентами, о формах получения заказа, список заказчиков. Как  только работник определил, какое ПО является наиболее подходящим для реализации конкретной задачи, он приступает к ее выполнению. Программы создания, рендера и форма получения результата фиксируются в базе сразу же, при создании записи о новой модели. Трудоемкость вносится при завершении проекта в часах, потраченных на разработку. \\
+
+\par Предметная область включает в себя следующие сущности:
+
+\begin{itemize}
+\item Создатель:
+  \begin{itemize}
+  \item ФИО
+  \item Должность в фирме
+  \end{itemize}
+\item Модель (заказ):
+  \begin{itemize}
+  \item Дата открытия
+  \item Дата закрытия
+  \item Программа для исполнения
+  \item Программа для рендера
+  \item Время, затраченное на создание
+  \item Форма получения
+  \end{itemize}
+
+\item Клиент:
+  \begin{itemize}
+  \item ФИО
+  \item Адрес
+  \item Контактный телефон
+  \end{itemize}
+\end{itemize}
+
+\subsubsection{Проектирование концептуальной модели}
+\includegraphics{concept1.png}
+\subsubsection{Проектирование реляционной логической модели}
+\begin{center}
+\includegraphics{relational.png}
+\end{center}
+
+\newpage
+\subsubsection{Проектирование физической модели}
+\includegraphics{erdiag.jpg}
+
+\newpage
+
+\section{Раздел реализации}
+\vspace{30mm}
+\subsection{Создание базы средствами СУБД}
+
+\begin{enumerate}
+\item Запускаем интерпретатор \verb PostgreSQL :
+\begin{verbatim}
+~/ $ psql -U most -d postgres 
+\end{verbatim}
+\item Создадим базу и подключимся к созданной базе:
+\begin{verbatim}
+most=# CREATE DATABASE model WITH OWNER most ENCODING 'UTF-8';
+CREATE DATABASE
+
+most=# \c model
+You are now connected to database "model" as user "most".
+\end{verbatim}
+\item Для удобства создадим свои перечислимые типы:
+{\small
+\begin{verbatim}
+model=# CREATE TYPE TCreationProg AS ENUM ('Blender', 'Maya', 
+                                           '3ds Max', 'Houdini');
+CREATE TYPE
+
+model=# CREATE TYPE TRenderProg AS ENUM ('RenderMan', 'MentalRay', 
+                                         'V-Ray', 'DreamScape');
+CREATE TYPE
+
+model=# CREATE TYPE TSendForm AS ENUM ('Model', 'Animation', 'Pictures');
+CREATE TYPE
+
+model=# CREATE TYPE TCreatorPosition AS ENUM ('Modeller', 'Animator', 
+                                              '3d artist');
+CREATE TYPE
+\end{verbatim}}
+
+\newpage
+
+\item Создадим таблицы для заказчика, исполнителя и проекта:
+{\small
+\begin{verbatim}
+model=# CREATE TABLE client (ID serial UNIQUE
+model(# NOT NULL PRIMARY KEY,
+model(# surname varchar(32),
+model(# name varchar(32),
+model(# address varchar(64),
+model(# email varchar(32),
+model(# phone varchar(16));
+NOTICE:  CREATE TABLE will create implicit sequence "client_id_seq" 
+         for serial column "client.id"
+NOTICE:  CREATE TABLE / PRIMARY KEY will create implicit index "client_pkey" 
+         for table "client"
+CREATE TABLE
+
+model=# CREATE TABLE creator (ID serial UNIQUE
+NOT NULL PRIMARY KEY,
+surname varchar(32),
+name varchar(32),
+position TCreatorPosition);
+NOTICE:  CREATE TABLE will create implicit sequence "creator_id_seq" 
+         for serial column "creator.id"
+NOTICE:  CREATE TABLE / PRIMARY KEY will create implicit index "creator_pkey" 
+         for table "creator"
+CREATE TABLE
+
+model=# CREATE TABLE project (ID serial UNIQUE
+model(# NOT NULL PRIMARY KEY,
+model(# creatorID serial REFERENCES creator(ID) ON UPDATE CASCADE,
+model(# clientID serial REFERENCES client(ID) ON UPDATE CASCADE,
+model(# openDate date,
+model(# closeDate date,
+model(# time int,
+model(# creationProg TCreationProg,
+model(# renderProg TRenderProg,
+model(# sendForm TSendForm);
+NOTICE:  CREATE TABLE will create implicit sequence "project_id_seq" 
+         for serial column "project.id"
+NOTICE:  CREATE TABLE will create implicit sequence "project_creatorid_seq" 
+         for serial column "project.creatorid"
+NOTICE:  CREATE TABLE will create implicit sequence "project_clientid_seq" 
+         for serial column "project.clientid"
+NOTICE:  CREATE TABLE / PRIMARY KEY will create implicit index "project_pkey" 
+         for table "project"
+CREATE TABLE 
+\end{verbatim}}
+
+\newpage
+
+\item Заполним таблицы тестовыми примерами:
+Таблица с клиентами:
+{\small
+\begin{verbatim}
+model=# INSERT INTO client (surname, name, address, email, phone)
+model-# VALUES ('Геворкян', 'Лусинэ', 
+model-#         'РФ, Сталинград г., Селезнёвой ул., 15 д., , 1 кв.', 
+model(# 'louna@gmail.com', '8912334512');
+INSERT 0 1
+
+model=# INSERT INTO client (surname, name, address, email, phone)
+VALUES ('Психеев', 'Фео', 'РФ, Москва г., Спартанская ул., 12 д., 5 к., 14 кв.', 
+        'psiXea@gmail.com', '8991443223');
+INSERT 0 1
+
+model=# INSERT INTO client (surname, name, address, email, phone)
+VALUES ('Отставников', 'Абэндон', 
+        'РФ, Москва г., Нижние мневники ул., 25 д., 3\4 к., 14 кв.',   
+'abandon@gmail.com', '89996663322');
+INSERT 0 1
+\end{verbatim}}
+
+Заполним таблицу с сотрудниками:
+{\small
+\begin{verbatim}
+model=# INSERT INTO creator (surname, name, position)
+model-# VALUES ('Бикмамбетов', 'Тимур', '3d artist');
+INSERT 0 1
+model=# INSERT INTO creator (surname, name, position)
+VALUES ('Миловская', 'Ольга', 'Modeller');
+INSERT 0 1
+model=# INSERT INTO creator (surname, name, position)
+VALUES ('Порай-Кошиц', 'Пётр', 'Animator');
+INSERT 0 1
+\end{verbatim}}
+
+Заполним таблицу с заказами:
+{\small
+\begin{verbatim}
+model=# INSERT INTO project (creatorID, clientID, openDate, closeDate,
+model(#                      time, creationProg, renderProg, sendForm)
+model-# VALUES (1, 1, '2012-06-12', '2012-06-25',
+model(#         56, 'Blender', 'RenderMan', 'Pictures');
+INSERT 0 1
+
+model=# INSERT INTO project (creatorID, clientID, openDate, closeDate,
+model(#                      time, creationProg, renderProg, sendForm)
+model(# VALUES (2, 2, '2012-07-21', '2012-07-25',
+model(#         21, 'Maya', 'V-Ray', 'Model');
+INSERT 0 1
+
+model=# INSERT INTO project (creatorID, clientID, openDate, closeDate,
+model(#                      time, creationProg, renderProg, sendForm)
+model(# VALUES (3, 3, '2012-07-18', '2012-07-28',
+model(#         55, 'Houdini', 'RenderMan', 'Animation');
+INSERT 0 1
+\end{verbatim}}
+
+\end{enumerate}
+\subsection{Создание интерфейса пользователя}
+sdf
+\subsection{Создание клиентского приложения}
+sdff
+
+\section{Заключение}
+\par В ходе работы в соответствии с поставленной задачей была разработана база данных <<Модель>>. Для этого была описана предметная область, спроектированы и реализованы ее концептуальная модель, реляционная логическая модель, физическая модель базы данных.
+\section{Библиографический список}
+
+\begin{enumerate}
+\item Голицына О. Л., Максимов Н. В., Попов И. И. Базы данных: учеб. Пособие. – 2-е изд., испр. И доп. – М.: ФОРУМ: ИНФРА-М, 2007. 
+\item \url{http://www.postgresql.org}
+\item \url{http://www.python.org}
+\item \url{http://stackoverflow.com}
+\end{enumerate}
+
+
+\end{otherlanguage}
+\end{document}
