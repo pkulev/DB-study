@@ -35,18 +35,7 @@ class MainWindow(QtGui.QMainWindow):
     def __init__(self):
         QtGui.QMainWindow.__init__(self)
         uic.loadUi('main.ui', self)
-        #Components
-        #    Buttons
-        #       pb_showTable
-        #       pb_addClient
-        #       pb_addCreator
-        #       pb_addProject
-        #    Edits
-        #       le_clent{Surname, Name, Address, Email, Phone}
-        #       le_creator{Surname, Name} + cb_creatorPosition
-        #
-        #    Radiobuttons rb_{client, creator, project}
-        
+
         #callbacks
         self.pb_showTable.clicked.connect(self.showTable)
         
@@ -62,8 +51,11 @@ class MainWindow(QtGui.QMainWindow):
         self.pb_delClient.clicked.connect(self.delClient)
         self.pb_delCreator.clicked.connect(self.delCreator)
         self.pb_delProject.clicked.connect(self.delProject)
+        #modify callbacks
+        self.pb_changeClient.clicked.connect(self.changeClient)
+        self.pb_changeCreator.clicked.connect(self.changeCreator)
+        self.pb_changeProject.clicked.connect(self.changeProject)
 
-        self.pushButton.clicked.connect(self.test)
         #Database variables
         self.conn = None
         #delete if not needed
@@ -331,14 +323,54 @@ class MainWindow(QtGui.QMainWindow):
             self.abstractDel('project', object_id = projectID)
             self.showTable()
 
-    def test(self):
-        t = self.lineEdit.text()
-        print repr(unicode(t).encode('utf-8'))
+    def abstractChange(self, table, field, target, ident):
+        query = "UPDATE {T} SET {f} = {t} WHERE id = {i}".format(
+            T = table,
+            f = field,
+            t = repr(target),
+            i = ident)
+        try:
+            self.connectToDB('model', 'most')
+            cur = self.conn.cursor()
+            cur.execute(query)
+            self.conn.commit()
+        except ps2.DatabaseError as e:
+            QtGui.QMessageBox.warning(self, 'Error', str(e))
+            if self.conn:
+                self.conn.rollback()
+        finally:
+            self.conn.close
+        
+    def changeClient(self):
+        table = 'client'
+        ident = str(self.le_changeClientID.text())
+        field = str(self.cb_changeClientField.currentItem())
+        target = str(self.le_changeClientTarget.text())
+        self.abstractChange(table, field, target, ident)
+        self.rb_client.setEnabled(True)
+        self.showTable()
+
+    def changeCreator(self):
+        table = 'creator'
+        ident = str(self.le_changeCreatorID.text())
+        field = str(self.cb_changeCreatorField.currentText())
+        target = str(self.le_changeCreatorTarget.text())
+        self.abstractChange(table, field, target, ident)
+        self.rb_creator.setEnabled(True)
+        self.showTable()
+
+    def changeProject(self):
+        table = 'project'
+        ident = str(self.le_changeProjectID.text())
+        field = str(self.cb_changeProjectField.currentText())
+        target = str(self.le_changeProjectTarget.text())
+        self.abstractChange(table, field, target, ident)
+        self.rb_project.setEnabled(True)
+        self.showTable()
+
 
 
 def login(login):
-    return True
-
     l = login()    
     return l.exec_() == QtGui.QDialog.Accepted
 

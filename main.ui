@@ -71,7 +71,7 @@
         <string>Добавить</string>
        </property>
       </widget>
-      <widget class="QWidget" name="">
+      <widget class="QWidget" name="layoutWidget">
        <property name="geometry">
         <rect>
          <x>10</x>
@@ -139,7 +139,7 @@
         </item>
        </layout>
       </widget>
-      <widget class="QWidget" name="">
+      <widget class="QWidget" name="layoutWidget">
        <property name="geometry">
         <rect>
          <x>160</x>
@@ -543,7 +543,7 @@
       <property name="title">
        <string>Удалить клиента</string>
       </property>
-      <widget class="QWidget" name="">
+      <widget class="QWidget" name="layoutWidget">
        <property name="geometry">
         <rect>
          <x>20</x>
@@ -692,34 +692,378 @@
        </layout>
       </widget>
      </widget>
-     <widget class="QLineEdit" name="lineEdit">
+     <widget class="QTabWidget" name="tabWidget_2">
       <property name="geometry">
        <rect>
-        <x>530</x>
-        <y>240</y>
-        <width>113</width>
-        <height>27</height>
+        <x>600</x>
+        <y>20</y>
+        <width>361</width>
+        <height>201</height>
        </rect>
       </property>
-     </widget>
-     <widget class="QPushButton" name="pushButton">
-      <property name="geometry">
-       <rect>
-        <x>540</x>
-        <y>280</y>
-        <width>97</width>
-        <height>27</height>
-       </rect>
+      <property name="currentIndex">
+       <number>2</number>
       </property>
-      <property name="text">
-       <string>PushButton</string>
-      </property>
+      <widget class="QWidget" name="tab_4">
+       <attribute name="title">
+        <string>Клиент</string>
+       </attribute>
+       <widget class="QGroupBox" name="groupBox_7">
+        <property name="geometry">
+         <rect>
+          <x>10</x>
+          <y>0</y>
+          <width>291</width>
+          <height>161</height>
+         </rect>
+        </property>
+        <property name="title">
+         <string>Изменить клиента</string>
+        </property>
+        <widget class="QWidget" name="layoutWidget">
+         <property name="geometry">
+          <rect>
+           <x>10</x>
+           <y>20</y>
+           <width>117</width>
+           <height>101</height>
+          </rect>
+         </property>
+         <layout class="QVBoxLayout" name="verticalLayout_12">
+          <item>
+           <widget class="QLabel" name="label_17">
+            <property name="text">
+             <string>ID клиента</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QLabel" name="label_18">
+            <property name="text">
+             <string>Что изменить</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QLabel" name="label_19">
+            <property name="text">
+             <string>На что изменить</string>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </widget>
+        <widget class="QWidget" name="layoutWidget">
+         <property name="geometry">
+          <rect>
+           <x>140</x>
+           <y>20</y>
+           <width>131</width>
+           <height>101</height>
+          </rect>
+         </property>
+         <layout class="QVBoxLayout" name="verticalLayout_13">
+          <item>
+           <widget class="QLineEdit" name="le_changeClientID"/>
+          </item>
+          <item>
+           <widget class="QComboBox" name="cb_changeClientField">
+            <item>
+             <property name="text">
+              <string>surname</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>name</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>address</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>email</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>phone</string>
+             </property>
+            </item>
+           </widget>
+          </item>
+          <item>
+           <widget class="QLineEdit" name="le_changeClientTarget"/>
+          </item>
+         </layout>
+        </widget>
+        <widget class="QPushButton" name="pb_changeClient">
+         <property name="geometry">
+          <rect>
+           <x>20</x>
+           <y>130</y>
+           <width>97</width>
+           <height>27</height>
+          </rect>
+         </property>
+         <property name="text">
+          <string>Изменить</string>
+         </property>
+        </widget>
+       </widget>
+      </widget>
+      <widget class="QWidget" name="tab_5">
+       <attribute name="title">
+        <string>Сотрудник</string>
+       </attribute>
+       <widget class="QGroupBox" name="groupBox_8">
+        <property name="geometry">
+         <rect>
+          <x>10</x>
+          <y>0</y>
+          <width>281</width>
+          <height>151</height>
+         </rect>
+        </property>
+        <property name="title">
+         <string>Изменить сотрудника</string>
+        </property>
+        <widget class="QWidget" name="">
+         <property name="geometry">
+          <rect>
+           <x>140</x>
+           <y>20</y>
+           <width>131</width>
+           <height>95</height>
+          </rect>
+         </property>
+         <layout class="QVBoxLayout" name="verticalLayout_14">
+          <item>
+           <widget class="QLineEdit" name="le_changeCreatorID"/>
+          </item>
+          <item>
+           <widget class="QComboBox" name="cb_changeCreatorField">
+            <item>
+             <property name="text">
+              <string>surname</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>name</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>position</string>
+             </property>
+            </item>
+           </widget>
+          </item>
+          <item>
+           <widget class="QLineEdit" name="le_changeCreatorTarget"/>
+          </item>
+         </layout>
+        </widget>
+        <widget class="QWidget" name="">
+         <property name="geometry">
+          <rect>
+           <x>10</x>
+           <y>20</y>
+           <width>117</width>
+           <height>91</height>
+          </rect>
+         </property>
+         <layout class="QVBoxLayout" name="verticalLayout_10">
+          <item>
+           <widget class="QLabel" name="label_21">
+            <property name="text">
+             <string>ID сотрудника</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QLabel" name="label_20">
+            <property name="text">
+             <string>Что изменить</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QLabel" name="label_22">
+            <property name="text">
+             <string>На что изменить</string>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </widget>
+        <widget class="QPushButton" name="pb_changeCreator">
+         <property name="geometry">
+          <rect>
+           <x>30</x>
+           <y>120</y>
+           <width>97</width>
+           <height>27</height>
+          </rect>
+         </property>
+         <property name="text">
+          <string>Изменить</string>
+         </property>
+        </widget>
+       </widget>
+      </widget>
+      <widget class="QWidget" name="tab_6">
+       <attribute name="title">
+        <string>Проект</string>
+       </attribute>
+       <widget class="QPushButton" name="pb_changeProject">
+        <property name="geometry">
+         <rect>
+          <x>30</x>
+          <y>130</y>
+          <width>97</width>
+          <height>27</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>Изменить</string>
+        </property>
+       </widget>
+       <widget class="QWidget" name="">
+        <property name="geometry">
+         <rect>
+          <x>10</x>
+          <y>10</y>
+          <width>121</width>
+          <height>91</height>
+         </rect>
+        </property>
+        <layout class="QVBoxLayout" name="verticalLayout_15">
+         <item>
+          <widget class="QLabel" name="label_24">
+           <property name="text">
+            <string>ID проекта</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QLabel" name="label_23">
+           <property name="text">
+            <string>Что изменить</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QLabel" name="label_25">
+           <property name="text">
+            <string>На что изменить</string>
+           </property>
+          </widget>
+         </item>
+        </layout>
+       </widget>
+       <widget class="QWidget" name="">
+        <property name="geometry">
+         <rect>
+          <x>150</x>
+          <y>10</y>
+          <width>131</width>
+          <height>91</height>
+         </rect>
+        </property>
+        <layout class="QVBoxLayout" name="verticalLayout_16">
+         <item>
+          <widget class="QLineEdit" name="le_changeProjectID"/>
+         </item>
+         <item>
+          <widget class="QComboBox" name="cb_changeProjectField">
+           <item>
+            <property name="text">
+             <string>opendate</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>closedate</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>time</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>creationprog</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>renderprog</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>sendform</string>
+            </property>
+           </item>
+          </widget>
+         </item>
+         <item>
+          <widget class="QLineEdit" name="le_changeProjectTarget"/>
+         </item>
+        </layout>
+       </widget>
+      </widget>
      </widget>
     </widget>
     <widget class="QWidget" name="tab_3">
      <attribute name="title">
       <string>Поиск и отчёты</string>
      </attribute>
+     <widget class="QDateEdit" name="dateEdit">
+      <property name="geometry">
+       <rect>
+        <x>60</x>
+        <y>30</y>
+        <width>110</width>
+        <height>27</height>
+       </rect>
+      </property>
+      <property name="displayFormat">
+       <string>yy-dd-MM</string>
+      </property>
+     </widget>
+     <widget class="QDateEdit" name="dateEdit_2">
+      <property name="geometry">
+       <rect>
+        <x>60</x>
+        <y>70</y>
+        <width>110</width>
+        <height>27</height>
+       </rect>
+      </property>
+      <property name="displayFormat">
+       <string>yy-dd-MM</string>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="pushButton_2">
+      <property name="geometry">
+       <rect>
+        <x>70</x>
+        <y>110</y>
+        <width>161</width>
+        <height>27</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Проекты за опреде</string>
+      </property>
+     </widget>
     </widget>
    </widget>
    <widget class="QPushButton" name="pb_showTable">
